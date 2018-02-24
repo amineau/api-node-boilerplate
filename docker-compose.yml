@@ -1,0 +1,40 @@
+version: '3'
+services:
+    api:
+        build: .
+        links:
+            - rabbit
+            - db
+            - metabase
+        volumes:
+            - ./src:/api/src
+            - ./test:/api/test
+            - ./config/:/api/config
+            - ./.eslintrc.js:/api/.eslintrc.js
+        ports:
+            - $MR_API_PORT:4242
+        environment:
+            - VHOST=$DOCKER_IP
+            - NODE_ENV
+        container_name: mr_api_$MR_API_PORT
+    rabbit:
+        image: rabbitmq:latest
+        restart: always
+        ports:
+            - 5672:5672
+        environment:
+            - RABBITMQ_DEFAULT_USER=rabbituser
+            - RABBITMQ_DEFAULT_PASS=rabbitpass
+    db:
+        image: postgres
+        restart: always
+        ports:
+            - 5432:5432
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgrespass
+            - POSTGRES_DB=musicRoom
+volumes:
+    pgdata:

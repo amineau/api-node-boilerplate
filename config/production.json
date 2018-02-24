@@ -1,0 +1,25 @@
+{
+    "database": {
+        "host": "127.0.0.1",
+        "port": 5432,
+        "user": "postgres",
+        "pass": "postgrespass",
+        "name": "musicRoom"
+    },
+    "rabbit": {
+        "host": "127.0.0.1",
+        "port": 5672,
+        "user": "rabbituser",
+        "pass": "rabbitpass"
+    },
+
+    "server": {
+        "host": "127.0.0.1",
+        "port": 4242
+    },
+
+    "deploy": {
+        "url": "127.0.0.1",
+        "name": "musicroom"
+    }
+}

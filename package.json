@@ -1,0 +1,61 @@
+{
+  "name": "mr-api",
+  "version": "0.1.0",
+  "url": "https://gitlab.com/music-room/mr-api/issues",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/music-room/mr-api.git"
+  },
+  "apidoc": {
+    "title": "Music Room apiDoc"
+  },
+  "scripts": {
+    "build": "export MR_API_PORT=4242 && docker-compose build",
+    "start": "export MR_API_PORT=4242 && docker-compose up --abort-on-container-exit --exit-code-from api api",
+    "stop": "docker-compose down",
+    "logs": "docker-compose logs -f",
+    "start-dev": "nodemon -L -x \"node --experimental-modules\" src/server.mjs",
+    "prestart-dev": "node -v",
+    "start-prod": "pm2-docker pm2.config.js --watch",
+    "test": "node --experimental-modules test/run.mjs",
+    "coverage": "nyc npm test",
+    "check-syntax": "eslint src --ext mjs"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.2",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "config": "^1.28.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "express-jwt": "^5.3.0",
+    "express-session": "^1.15.6",
+    "express-validation": "^1.0.2",
+    "generate-password": "^1.3.0",
+    "joi": "^13.0.2",
+    "jsonwebtoken": "^8.1.0",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.19.2",
+    "morgan": "^1.9.0",
+    "npmlog": "^4.1.2",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
+    "pg": "^6.4.2",
+    "pg-hstore": "^2.3.2",
+    "pm2": "^2.8.0",
+    "redis": "^2.8.0",
+    "sequelize": "^4.22.15",
+    "superagent": "^3.8.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.11.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
+    "nyc": "^11.3.0",
+    "remove": "^0.1.5"
+  }
+}
